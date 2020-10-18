@@ -1,0 +1,30 @@
+# Config Plugin Server Analytics
+# Relry Pereira dos Santos
+# version: 1.0
+#
+# Property for plugin
+#
+# -------------------------------------------------------------------
+# UUID server.
+# -------------------------------------------------------------------
+server-uuid: ''
+
+# -------------------------------------------------------------------
+# Database Config
+#   dialect supported: MySQL8Dialect
+#   url:  'localhost' (default)
+#   port: 3306 (default)
+#   schema: 'serveranalytics' (default)
+#   timeZone: 'default' (default return 'UTC') or 'auto' (return your system)
+#   username: 'root' (default)
+#   passwordBase64: 'password' in Base64 (default)
+# -------------------------------------------------------------------
+database:
+  dialect: MySQL8Dialect
+  url: 'localhost'
+  port: 3306
+  schema: 'serveranalytics'
+  timeZone: 'default'
+  username: 'root'
+  passwordBase64: 'cGFzc3dvcmQ='
+
