@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Entity
 @Table (name = "player")
-public class PlayerModel extends BaseModel<Long> {
+public class PlayerModel extends BasicModel<Long> {
 
     @Type(type = "uuid-char")
     @Column(unique = true, nullable = false, length = 36)
@@ -17,9 +17,17 @@ public class PlayerModel extends BaseModel<Long> {
     @Column(unique = true, nullable = false, length = 30)
     private String name;
 
+    @Column(nullable = false)
+    private Boolean op;
+
+    /* Constructors */
+    public PlayerModel() {
+    }
+
     public PlayerModel(Player player) {
         this.name = player.getName();
         this.uuid = player.getUniqueId();
+        this.op = player.isOp();
     }
 
     /* Getters e Setters */
@@ -37,5 +45,13 @@ public class PlayerModel extends BaseModel<Long> {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getOp() {
+        return op;
+    }
+
+    public void setOp(boolean op) {
+        this.op = op;
     }
 }

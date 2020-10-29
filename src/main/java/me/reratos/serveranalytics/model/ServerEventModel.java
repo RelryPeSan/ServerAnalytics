@@ -4,13 +4,16 @@ import javax.persistence.*;
 
 @Entity
 @Table (name = "serverevent")
-public class ServerEventModel extends BaseModel<Long> {
+public class ServerEventModel extends BasicModel<Long> {
 
     @Column(length = 30)
     private String eventType;
 
+    @Column
+    private Boolean asynchronous;
+
     public ServerEventModel() {
-        super();
+
     }
 
     /* Getters e Setters */
@@ -22,4 +25,11 @@ public class ServerEventModel extends BaseModel<Long> {
         this.eventType = eventType;
     }
 
+    public Boolean getAsynchronous() {
+        return asynchronous;
+    }
+
+    public void setAsynchronous(Boolean asynchronous) {
+        this.asynchronous = asynchronous;
+    }
 }

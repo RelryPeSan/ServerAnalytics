@@ -6,8 +6,15 @@
 
     <groupId>me.reratos</groupId>
     <artifactId>ServerAnalytics</artifactId>
-    <version>0.0.1</version>
+    <version>0.10.1</version>
 
+    <properties>
+        <encoding>UTF-8</encoding>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
+        <project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
+        <archetype.encoding>${encoding}</archetype.encoding>
+    </properties>
 
     <repositories>
         <!-- This adds the Spigot Maven repository to the build -->
@@ -38,8 +45,21 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.21</version>
-            <scope>runtime</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql ->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.18</version>
+        </dependency>
+
+        <!- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client ->
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>2.7.0</version>
+        </dependency> -->
 
         <!-- https://mvnrepository.com/artifact/org.reflections/reflections -->
         <dependency>

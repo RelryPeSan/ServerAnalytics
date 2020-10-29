@@ -4,17 +4,17 @@ import javax.persistence.*;
 
 @Entity
 @Table (name = "playerevent")
-public class PlayerEventModel extends BaseModel<Long> {
+public class PlayerEventModel extends BasicModel<Long> {
 
     @ManyToOne
-    @JoinColumn(name = "fke_player")
+    @JoinColumn(name = "fke_player", nullable = false)
     private PlayerModel playerModel;
 
     @Column(length = 30)
     private String eventType;
 
     public PlayerEventModel() {
-        super();
+
     }
 
     /* Getters e Setters */

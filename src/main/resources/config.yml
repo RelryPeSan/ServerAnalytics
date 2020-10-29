@@ -8,10 +8,11 @@
 # UUID server.
 # -------------------------------------------------------------------
 server-uuid: ''
+server-name: 'ServerAnalytics'
 
 # -------------------------------------------------------------------
 # Database Config
-#   dialect supported: MySQL8Dialect
+#   dialect supported: MySQL8Dialect, PostgreSQL10Dialect, MariaDB103Dialect
 #   url:  'localhost' (default)
 #   port: 3306 (default)
 #   schema: 'serveranalytics' (default)

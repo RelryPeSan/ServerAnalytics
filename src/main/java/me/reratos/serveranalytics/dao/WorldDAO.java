@@ -1,28 +1,27 @@
 package me.reratos.serveranalytics.dao;
 
-import me.reratos.serveranalytics.model.PlayerModel;
+import me.reratos.serveranalytics.model.WorldModel;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.UUID;
 
-public class PlayerDAO extends BasicDAO<PlayerModel, Long> {
+public class WorldDAO extends BasicDAO<WorldModel, Long> {
 
-    public PlayerDAO() {
-        super(PlayerModel.class);
+    public WorldDAO() {
+        super(WorldModel.class);
     }
 
-    public PlayerModel findByUuid(UUID uuid) {
+    public WorldModel findByName(String name) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<PlayerModel> query = cb.createQuery(PlayerModel.class);
-        Root<PlayerModel> from = query.from(PlayerModel.class);
-        TypedQuery<PlayerModel> typedQuery = entityManager.createQuery(
+        CriteriaQuery<WorldModel> query = cb.createQuery(WorldModel.class);
+        Root<WorldModel> from = query.from(WorldModel.class);
+        TypedQuery<WorldModel> typedQuery = entityManager.createQuery(
                 query.select(from)
                 .where(
-                        cb.equal(from.get("uuid"), uuid)
+                        cb.equal(from.get("name"), name)
                 )
         );
 

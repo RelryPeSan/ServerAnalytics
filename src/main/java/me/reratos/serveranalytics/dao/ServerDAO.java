@@ -1,6 +1,5 @@
 package me.reratos.serveranalytics.dao;
 
-import me.reratos.serveranalytics.model.PlayerModel;
 import me.reratos.serveranalytics.model.ServerModel;
 
 import javax.persistence.NoResultException;
@@ -8,17 +7,11 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.util.List;
 import java.util.UUID;
 
 public class ServerDAO extends GenericDAO<ServerModel, Long> {
     public ServerDAO() {
         super(ServerModel.class);
-    }
-
-    @Override
-    public List<ServerModel> findAll() {
-        return null;
     }
 
     public ServerModel findByUuid(UUID uuid) {

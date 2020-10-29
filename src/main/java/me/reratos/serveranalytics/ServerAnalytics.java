@@ -5,9 +5,13 @@ import me.reratos.serveranalytics.connections.ServerDatabase;
 import me.reratos.serveranalytics.dao.ServerDAO;
 import me.reratos.serveranalytics.event.EntityEvents;
 import me.reratos.serveranalytics.event.PlayerEvents;
+import me.reratos.serveranalytics.event.ServerEvents;
+import me.reratos.serveranalytics.event.WorldEvents;
 import me.reratos.serveranalytics.model.ServerModel;
 import me.reratos.serveranalytics.utils.ConfigConstants;
+import me.reratos.serveranalytics.utils.Utilities;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -16,17 +20,19 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.net.InetAddress;
 import java.util.*;
 
 public class ServerAnalytics extends JavaPlugin {
 
     public static FileConfiguration config;
     public static UUID serverUUID = null;
+    public static ServerModel serverModel;
+    public static Plugin plugin;
 
-    private static Plugin plugin;
     private static final Server server = Bukkit.getServer();
     private static ServerDatabase serverDatabase;
-    public static ServerModel serverModel;
+    private static String serverName;
 
     @Override
     public void onEnable() {
@@ -34,7 +40,6 @@ public class ServerAnalytics extends JavaPlugin {
 
         try {
             initConfig();
-
             Database.initialize(serverDatabase);
 
             ServerDAO serverDAO = new ServerDAO();
@@ -43,15 +48,23 @@ public class ServerAnalytics extends JavaPlugin {
 
             if(serverModel == null) {
                 serverModel = new ServerModel();
-
-                serverModel.setName(Bukkit.getServer().getName());
                 serverModel.setServerUUID(serverUUID);
-
-                serverDAO.save(serverModel);
             }
+
+            serverModel.setOnlineMode(server.getOnlineMode());
+            serverModel.setMaxPlayers(server.getMaxPlayers());
+            serverModel.setVersion(server.getBukkitVersion());
+            serverModel.setName(serverName);
+            serverModel.setHostName(InetAddress.getLocalHost().getHostName());
+            serverModel.setLocalAddress(InetAddress.getLoopbackAddress().getHostAddress());
+            serverModel.setPort(server.getPort());
+            serverModel.setExternalAddress(Utilities.getExternalAddress());
+
+            serverDAO.saveOrUpdate(serverModel);
 
         } catch (Exception e) {
             e.printStackTrace();
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "The plugin ServerAnalytics is not initialized.");
             onDisable();
             return;
         }
@@ -101,12 +114,17 @@ public class ServerAnalytics extends JavaPlugin {
         serverDatabase.setUsername(config.getString(ConfigConstants.DATABASE_USERNAME));
         serverDatabase.setPasswordBase64(config.getString(ConfigConstants.DATABASE_PASSWORD_BASE64));
 
+        // demais dados do config
+        serverName = config.getString(ConfigConstants.SERVER_NAME);
+
         saveConfig();
     }
 
     private void initListeners() {
         server.getPluginManager().registerEvents(new PlayerEvents(), this);
         server.getPluginManager().registerEvents(new EntityEvents(), this);
+        server.getPluginManager().registerEvents(new ServerEvents(), this);
+        server.getPluginManager().registerEvents(new WorldEvents(), this);
     }
 
 }

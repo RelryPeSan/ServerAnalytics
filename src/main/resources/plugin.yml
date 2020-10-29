@@ -1,8 +1,9 @@
 name: ServerAnalytics
-version: 0.0.1
+version: 0.0.1-alpha
 main: me.reratos.serveranalytics.ServerAnalytics
 author: Relry
 database: true
+load: STARTUP
 #website: https://www.spigotmc.org/resources/timehandler.83803/
 #description: >
 #  It allows manipulating the time of the worlds and / or setting a condition for it.

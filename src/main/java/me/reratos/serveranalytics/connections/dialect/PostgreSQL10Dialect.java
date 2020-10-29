@@ -7,13 +7,12 @@ import javax.persistence.Persistence;
 import java.util.Base64;
 import java.util.Properties;
 
-public class MySQL8Dialect {
+public class PostgreSQL10Dialect {
     public static EntityManagerFactory createEntityManagerFactory(ServerDatabase sd) {
         Properties properties = new Properties();
 
         properties.put("javax.persistence.jdbc.url",
-                "jdbc:mysql://" + sd.getUrl() + ":" + sd.getPort() + "/" + sd.getSchema() +
-                        "?useTimezone=true&serverTimezone=" + sd.getTimeZone());
+                "jdbc:postgresql://" + sd.getUrl() + ":" + sd.getPort() + "/" + sd.getSchema());
         properties.put("javax.persistence.jdbc.user", sd.getUsername());
         properties.put("javax.persistence.jdbc.password", new String(Base64.getDecoder().decode(sd.getPasswordBase64())));
 

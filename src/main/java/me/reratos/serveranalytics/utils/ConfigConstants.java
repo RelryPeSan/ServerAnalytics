@@ -2,6 +2,7 @@ package me.reratos.serveranalytics.utils;
 
 public class ConfigConstants {
     public static final String SERVER_UUID              = "server-uuid";
+    public static final String SERVER_NAME              = "server-name";
 
     public static final String DATABASE                 = "database";
     public static final String DATABASE_DIALECT         = DATABASE + ".dialect";
@@ -12,5 +13,7 @@ public class ConfigConstants {
     public static final String DATABASE_USERNAME        = DATABASE + ".username";
     public static final String DATABASE_PASSWORD_BASE64 = DATABASE + ".passwordBase64";
 
-    public static final String DIALECT_MYSQL8DIALECT    = "MySQL8Dialect";
+    public static final String DIALECT_MYSQL8DIALECT        = "MySQL8Dialect";
+    public static final String DIALECT_MARIADB103DIALECT    = "MariaDB103Dialect";
+    public static final String DIALECT_POSTGRESQL10DIALECT  = "PostgreSQL10Dialect";
 }

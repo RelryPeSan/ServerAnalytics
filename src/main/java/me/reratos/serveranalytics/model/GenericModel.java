@@ -7,12 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @MappedSuperclass
-public class GenericModel<I> {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", unique = true, nullable = false)
-    private I id;
+public class GenericModel<I> extends IdGenericModel<I> {
 
     @Column
     @CreationTimestamp
@@ -24,22 +19,7 @@ public class GenericModel<I> {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateUpdated;
 
-    /* Constructors */
-    public GenericModel() {}
-
-    public GenericModel(I id) {
-        this.id = id;
-    }
-
     /* Getters e Setters */
-    public I getId() {
-        return id;
-    }
-
-    public void setId(I id) {
-        this.id = id;
-    }
-
     public Date getDateCreated() {
         return dateCreated;
     }

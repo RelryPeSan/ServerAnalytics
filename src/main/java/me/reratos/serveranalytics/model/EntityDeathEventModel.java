@@ -1,19 +1,18 @@
 package me.reratos.serveranalytics.model;
 
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 
 import javax.persistence.*;
 
 @Entity
 @Table (name = "entitydeathevent")
-public class EntityDeathEventModel extends BaseModel<Long> {
+public class EntityDeathEventModel extends BasicModel<Long> {
 
     @Column(nullable = false, length = 30)
     private String entityDeadType;
 
     @Column(nullable = false)
-    private int droppedExp;
+    private Integer droppedExp;
 
     @Column
     private Double lastDamage;
@@ -30,6 +29,9 @@ public class EntityDeathEventModel extends BaseModel<Long> {
     private PlayerModel playerKiller;
 
     /* Constructors */
+    public EntityDeathEventModel() {
+    }
+
     public EntityDeathEventModel(PlayerModel dead, PlayerModel killer) {
         this.entityDeadType = EntityType.PLAYER.name();
         this.playerDead = dead;
@@ -60,7 +62,7 @@ public class EntityDeathEventModel extends BaseModel<Long> {
         this.entityDeadType = entityDeadType;
     }
 
-    public int getDroppedExp() {
+    public Integer getDroppedExp() {
         return droppedExp;
     }
 
@@ -72,7 +74,7 @@ public class EntityDeathEventModel extends BaseModel<Long> {
         return lastDamage;
     }
 
-    public void setLastDamage(Double lastDamage) {
+    public void setLastDamage(double lastDamage) {
         this.lastDamage = lastDamage;
     }
 
